@@ -1,11 +1,11 @@
 # Active Directory - Windows Server 2025
 
 ## DC1
-Hypervisor: VMWare WorkStation
-VM Name: ADDC
-NVMe: 60GB
-CPU: 8 cores
-RAM: 8GB
+Hypervisor: VMWare WorkStation\
+VM Name: ADDC\
+NVMe: 60GB\
+CPU: 8 cores\
+RAM: 8GB\
 Bridged Network Adapter
 
 Domain Controller - Windows Server 2025\
