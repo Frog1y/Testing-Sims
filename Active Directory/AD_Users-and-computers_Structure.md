@@ -4,8 +4,9 @@ AD is set up as 1 top level domain to 5 primary top level OUs: Domain Controller
 The OUs are then further segmented by Site and Department.
 
 This setup allows me to create users under certain Sites and Departments, as well as delegate OU control over specific Sites and Departments.\
-For example, I can delegate control over the Computers - LJ OU, only to the LJ_IT_SG security group. So the Ljubljana IT department can manage that site's computers and or users.
-This also allows me to apply more granual GPOs based on these OUs. 
+For example, I can delegate control over the Computers - LJ OU, only to the LJ_IT_SG security group. So the Ljubljana IT department can manage that site's computers and or users in Active Directory.\
+This also allows me to apply more granual GPOs based on these OUs.\
+For example, I can have a GPO that disables the control panel only on the computers in Melbourne. 
 
 <img width="1680" height="1050" alt="ADDC-2026-10-15-12-52-10" src="https://github.com/user-attachments/assets/16b2d030-bb2e-47f2-bc1a-93c2ffd91113" />
 <img width="1680" height="1050" alt="ADDC-2026-10-15-13-12-36" src="https://github.com/user-attachments/assets/ad781e60-197e-4e53-a7f7-fe7cd822fe3c" />
