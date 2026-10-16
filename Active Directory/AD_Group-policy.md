@@ -8,4 +8,5 @@ The IT department disables inheritance, so those OUs do not apply to them. But t
 
 I've also created a new OU for testing. This is an OU with a single machine and user - both of which are used for testing purposes before actual GPO deployment.
 
-This OU structure allows for granual control.
+This OU structure allows for granual control. I can link computer GPOs to the computer OUs and user GPOs to the user OUs. As well as different sites and departments.
+I can also filter further by security groups in the GPO itself.
