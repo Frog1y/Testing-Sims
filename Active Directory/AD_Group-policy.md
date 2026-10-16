@@ -1,4 +1,4 @@
-<img width="600" height="600" alt="ADDC-2026-10-16-16-44-21" src="https://github.com/user-attachments/assets/ec18d109-818b-4a97-b6f3-39efe023c184" />
+<img width="1680" height="1050" alt="ADDC-2026-10-16-16-44-21" src="https://github.com/user-attachments/assets/10fd654e-1eba-41d7-9181-854782e02498" />
 
 Basic group policy configuration.
 Default domain policy that is enforced.
