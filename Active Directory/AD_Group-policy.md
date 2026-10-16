@@ -1,1 +1,11 @@
-Hello 
+<img width="600" height="600" alt="ADDC-2026-10-16-16-44-21" src="https://github.com/user-attachments/assets/ec18d109-818b-4a97-b6f3-39efe023c184" />
+
+Basic group policy configuration.
+Default domain policy that is enforced.
+GPO that Enables RDP on the Domain Computers OU. This enables RDP connections, opens ports for RDP to all computers in the OU for adiminstration.
+GPO that disables cmd and powershell along with registry editors in the Users OU. As well as disables the control panel and settings.
+The IT department disables inheritance, so those OUs do not apply to them. But the default domain policy does as it is enforced.
+
+I've also created a new OU for testing. This is an OU with a single machine and user - both of which are used for testing purposes before actual GPO deployment.
+
+This OU structure allows for granual control.
