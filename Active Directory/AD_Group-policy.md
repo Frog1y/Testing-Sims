@@ -1,9 +1,9 @@
-# Active Directory Group Policy Management
+# Active Directory - GPOs and OU structure
 
 <img width="1680" height="1050" alt="ADDC-2026-10-16-16-44-21" src="https://github.com/user-attachments/assets/10fd654e-1eba-41d7-9181-854782e02498" />
 
 ## Overview
-This document outlines the organization and structure of the Group Policy Management Console (GPMC) within the `home.com` domain. It details the hierarchical Organizational Unit (OU) design used to delegate controls, deploy software, and target specific user or computer configurations across different geographic locations (Ljubljana, Melbourne, and New York).
+This document outlines the organization and structure of the Group Policy Management Console (GPMC) within the `home.com` domain. It details the hierarchical Organizational Unit (OU) design used to delegate controls, deploy software, and target specific user or computer configurations across different geographic locations (Ljubljana, Melbourne, and New York) See screenshot above.
 
 ---
 
@@ -14,7 +14,7 @@ The environment utilizes a clean, granular container layout to manage policies e
 ### Organizational Unit Hierarchy
 **`Domain Computers`**: Contains sub-OUs segregated by physical branch locations (`Computers - LJ`, `Computers - MEL`, `Computers - NY`). This layout allows precise targeting of computer-level policies (such as firewall rules, startup scripts, and local security settings) to specific offices.\
 
-**`Domain Users`**: Contains departmental user sub-OUs organized by location (e.g., `Users - LJ` split into Finance, HR, and IT; alongside `Users - MEL` and `Users - NY`). This permits user-specific configuration deployment (like drive mappings, desktop wallpapers, and permission restrictions).\
+**`Domain Users`**: Contains departmental user sub-OUs organized by location (e.g., `Users - LJ` split into Finance, HR, and IT; alongside `Users - MEL` and `Users - NY`). This permits user-specific configuration deployment (like drive mappings, desktop wallpapers, and security GPOs like the disabled Control Panel, CMD and registry editors in the screenshot).\
 
 **`Domain Controllers`**: Contains all of the DCs.\
 
@@ -29,7 +29,7 @@ The environment utilizes a clean, granular container layout to manage policies e
 ---
 
 ## How It Works Together
-**Inheritance and Linkage:** Group policies are linked to domains, sites, or OUs. Policies applied at higher levels (like the domain root) cascade down, while OUs lower in the tree inherit those settings unless blocked or overridden.\
+**Inheritance and Linkage:** Group policies are linked to domains, sites, or OUs. Policies applied at higher levels (like the domain root) cascade down, while OUs lower in the tree inherit those settings - unless those settings either block inheritance from the higher levels (IT Department in the screenshot) - Unless that GPO is enforced in which case that GPO gets applied regardless.\
 
 **Security Filtering & WMI:** Policies assigned to location-based OUs evaluate against the user or computer objects residing within that exact container during logon or background refresh cycles, ensuring regional configurations match physical operational needs.
 
