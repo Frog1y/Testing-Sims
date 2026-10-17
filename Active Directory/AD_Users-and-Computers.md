@@ -46,8 +46,10 @@ Active Directory Security Groups are used to grant access to network resources (
 ---
 
 ## How It Works Together
-**Provisioning:** New accounts are created in their respective regional and departmental OUs (e.g., a new HR employee in Ljubljana is created inside `Domain Users -> Users - LJ -> Users_LJ_HR`).
-**Access Assignment:** User accounts are added to Domain Security Groups, which are then granted permissions on network shares, printers, or security policies.
+**Provisioning:** New accounts are created in their respective regional and departmental OUs (e.g., a new HR employee in Ljubljana is created inside `Domain Users -> Users - LJ -> Users_LJ_HR`).\
+
+**Access Assignment:** User accounts are added to Domain Security Groups, which are then granted permissions on network shares, printers, or security policies.\
+
 **GPO Targeting:** When a user logs in or a computer boots up, Active Directory evaluates its exact OU location in the hierarchy to apply only the policies relevant to that user's role and physical office location.
 
 
