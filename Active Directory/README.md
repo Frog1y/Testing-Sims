@@ -1,5 +1,7 @@
 # Active Directory - Windows Server 2025
 
+This project is an Active directory simulation for learning purposes.
+
 ## DC1 (Server, Domain Controller)
 Hypervisor: VMWare WorkStation\
 VM Name: ADDC\
