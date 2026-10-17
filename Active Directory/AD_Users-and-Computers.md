@@ -32,7 +32,7 @@ Workstations and servers are joined to the domain and sorted into location-speci
 **`Computers - NY`**: Workstations and local devices residing in the New York office.
 
 ### Staging and Testing (`TESTING OU`)
-* Contains dedicated `Computers` and `Users` sub-containers used to stage new domain objects, test software deployments, and validate Group Policy Objects (GPOs) prior to pushing changes to production regional OUs.
+Contains dedicated `Computers` and `Users` sub-containers used to stage new domain objects, test software deployments, and validate Group Policy Objects (GPOs) prior to pushing changes to production regional OUs.
 
 ---
 
@@ -40,15 +40,15 @@ Workstations and servers are joined to the domain and sorted into location-speci
 
 Active Directory Security Groups are used to grant access to network resources (file shares, permissions, remote access) following the AGDLP (Account -> Global -> Domain Local -> Permission) best practice framework:
 
-* **Domain Security Groups (`Domain Security Groups`):** Centralized security groups created to manage permissions across resources in `home.com`.
-* **Administrative Accounts (`Administrators`):** Dedicated privileged containers and accounts isolated from standard end-user accounts to uphold the principle of least privilege.
+**Domain Security Groups (`Domain Security Groups`):** Centralized security groups created to manage permissions across resources in `home.com`.
+**Administrative Accounts (`Administrators`):** Dedicated privileged containers and accounts isolated from standard end-user accounts to uphold the principle of least privilege.
 
 ---
 
 ## How It Works Together
-1. **Provisioning:** New accounts are created in their respective regional and departmental OUs (e.g., a new HR employee in Ljubljana is created inside `Domain Users -> Users - LJ -> Users_LJ_HR`).
-2. **Access Assignment:** User accounts are added to Domain Security Groups, which are then granted permissions on network shares, printers, or security policies.
-3. **GPO Targeting:** When a user logs in or a computer boots up, Active Directory evaluates its exact OU location in the hierarchy to apply only the policies relevant to that user's role and physical office location.
+**Provisioning:** New accounts are created in their respective regional and departmental OUs (e.g., a new HR employee in Ljubljana is created inside `Domain Users -> Users - LJ -> Users_LJ_HR`).
+**Access Assignment:** User accounts are added to Domain Security Groups, which are then granted permissions on network shares, printers, or security policies.
+**GPO Targeting:** When a user logs in or a computer boots up, Active Directory evaluates its exact OU location in the hierarchy to apply only the policies relevant to that user's role and physical office location.
 
 
 
