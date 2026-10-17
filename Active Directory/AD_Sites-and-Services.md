@@ -1,4 +1,4 @@
-### Sites and Services
+# Sites and Services
 
 Active Directory Sites and Services maps physical network infrastructure to logical directory components to optimize authentication, domain controller selection, and replication.
 
