@@ -1,15 +1,55 @@
-# Users and Computers
-
-AD is set up as 1 top level domain to 5 primary top level OUs: Domain Controllers, Domain Users, Domain Computers, Domain Security Groups and Admins.\
-The OUs are then further segmented by Site and Department.
-
-This setup allows me to create users under certain Sites and Departments, as well as delegate OU control over specific Sites and Departments.\
-For example, I can delegate control over the Computers - LJ OU, only to the LJ_IT_SG security group. So the Ljubljana IT department can manage that site's computers and or users in Active Directory.
-
-This also allows me to apply more granual GPOs based on these OUs.\
-For example, I can have a GPO that disables the control panel only on the computers in Melbourne.\
-As well as applying GPOs to users and computers seperately.
+# Active Directory Users and Computers (ADUC)
 
 <img width="1680" height="1050" alt="ADDC-2026-10-15-13-12-36" src="https://github.com/user-attachments/assets/ad781e60-197e-4e53-a7f7-fe7cd822fe3c" />
+
+## Overview
+This document outlines the organization, user account administration, computer management, and Security Group structure within the `home.com` domain using Active Directory Users and Computers (ADUC).
+
+---
+
+## Domain Structure & Container Layout (`home.com`)
+
+To ensure efficient administrative delegation, clear object management, and clean Group Policy targeting, objects are organized into dedicated Organizational Units (OUs) rather than default containers like `Computers` or `Users`.
+
+### User Administration (`Domain Users`)
+User accounts are grouped by geographical site and further divided by business function/department to allow role-based access control and granular policy mapping:
+
+**`Users - LJ` (Ljubljana):**
+  * `Users_LJ_Finance`: Contains financial and accounting user accounts.
+  * `Users_LJ_HR`: Contains human resources user accounts.
+  * `Users_LJ_IT`: Contains IT support and system administrator accounts.
+**`Users - MEL` (Melbourne):** Regional user accounts for Melbourne staff.
+**`Users - NY` (New York):** Regional user accounts for New York staff.
+
+### Computer Management (`Domain Computers`)
+Workstations and servers are joined to the domain and sorted into location-specific OUs rather than remaining in the default `CN=Computers` container:
+
+**`Computers - LJ`**: Workstations and local devices residing in the Ljubljana office.
+  * `Computers_LJ_Finance`: Contains financial and accounting user accounts.
+  * `Computers_LJ_HR`: Contains human resources user accounts.
+  * `Computers_LJ_IT`: Contains IT support and system administrator accounts.
+**`Computers - MEL`**: Workstations and local devices residing in the Melbourne office.
+**`Computers - NY`**: Workstations and local devices residing in the New York office.
+
+### Staging and Testing (`TESTING OU`)
+* Contains dedicated `Computers` and `Users` sub-containers used to stage new domain objects, test software deployments, and validate Group Policy Objects (GPOs) prior to pushing changes to production regional OUs.
+
+---
+
+### Group Management & Security Architecture
+
+Active Directory Security Groups are used to grant access to network resources (file shares, permissions, remote access) following the AGDLP (Account -> Global -> Domain Local -> Permission) best practice framework:
+
+* **Domain Security Groups (`Domain Security Groups`):** Centralized security groups created to manage permissions across resources in `home.com`.
+* **Administrative Accounts (`Administrators`):** Dedicated privileged containers and accounts isolated from standard end-user accounts to uphold the principle of least privilege.
+
+---
+
+## How It Works Together
+1. **Provisioning:** New accounts are created in their respective regional and departmental OUs (e.g., a new HR employee in Ljubljana is created inside `Domain Users -> Users - LJ -> Users_LJ_HR`).
+2. **Access Assignment:** User accounts are added to Domain Security Groups, which are then granted permissions on network shares, printers, or security policies.
+3. **GPO Targeting:** When a user logs in or a computer boots up, Active Directory evaluates its exact OU location in the hierarchy to apply only the policies relevant to that user's role and physical office location.
+
+
 
 
