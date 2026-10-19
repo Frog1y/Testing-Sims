@@ -9,6 +9,8 @@ The configuration and infrastrucutre outlined below was done for educational and
 ## Storage Architecture
 The environment utilizes a combination of local storage pools and three external storage backends:
 
+<img width="2109" height="325" alt="pve1" src="https://github.com/user-attachments/assets/1ede1b54-0571-4f5b-8e01-7ab3d81451d6" />
+
 * **Local Storage:**
   * `local` (Directory): Located at `/var/lib/vz`, used for backups, ISO images, container templates, and imports. Default
   * `local-lvm` (LVM-Thin): Utilized for virtual machine disk images and container rootfs storage. Default
@@ -22,6 +24,8 @@ The environment utilizes a combination of local storage pools and three external
 ## Backup Schedules & Retention
 Automated backup jobs are configured to protect virtual machines and containers across the environment:
 
+<img width="1863" height="315" alt="pv2" src="https://github.com/user-attachments/assets/1bbd46b5-5fb4-4202-b327-30f2e7f321bc" />
+
 * **Frequent VM/Container Backups (`*/30` schedule):** Automated backup jobs targeting ID `101` (VM) and ID `102` (Container) running at frequent intervals to `proxmox-backup-server` and `pbs-vms-daily`.
 * **Daily Scheduled Backup:** A dedicated backup task runs every day at 02:00 (`02:00` schedule) targeting node resources.
 * **Retention Policy:** Managed via standard storage configuration fallbacks.
@@ -30,6 +34,8 @@ Automated backup jobs are configured to protect virtual machines and containers 
 
 ## User Management & Access Control
 User accounts and permissions are managed at the datacenter level:
+
+<img width="1862" height="400" alt="pve3" src="https://github.com/user-attachments/assets/680fe873-1952-466d-a003-492a0442f965" />
 
 * **Users Configured:**
   * `root` (Realm: `pam`, Enabled: Yes, Groups: None)
@@ -40,6 +46,8 @@ User accounts and permissions are managed at the datacenter level:
 
 ## Firewall Configuration
 Network security rules are applied at both the datacenter/node level and individual virtual machine instances:
+
+<img width="1972" height="488" alt="pve5" src="https://github.com/user-attachments/assets/365478f3-6e0f-41f3-be16-da7977a59868" />
 
 * **Datacenter / Node Firewall Rules:**
   * **Rule 0:** Accepts incoming **SSH** traffic across interface `vmbr0`.
