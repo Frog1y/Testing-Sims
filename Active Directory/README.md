@@ -1,6 +1,9 @@
 # Active Directory - Windows Server 2025
 
-This project is an Active directory simulation for learning purposes.
+<img width="2500" height="415" alt="image" src="https://github.com/user-attachments/assets/e56634d1-12c5-47f0-bc49-5db9a78a4e7b" />
+
+Active Directory (AD) is a directory service developed by Microsoft that organizes, manages, and secures identities, computers, and resources across a Windows network.\
+Information below outlines the infrastructure that was made for simulating an AD enviornment.
 
 ## DC1 (Server, Domain Controller)
 Hypervisor: VMWare WorkStation\
