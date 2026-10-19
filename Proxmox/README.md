@@ -5,10 +5,10 @@
 Proxmox PVE (Proxmox Virtual Environment) is an open-source, Debian-based server management and virtualization platform. It is installed on a bare-metal server, so it is a type 1 hypervisor.\
 Proxmox PBS (Proxmox Backup Server) is a companion enterprise-grade backup solution designed specifically for Proxmox VE.
 
-
+Information below outlines the infrastructure that was made for simulating a Proxmox Virtual Environment hypervisor along with a Proxmox Backup Server.
 
 ## PVE (Proxmox Virtual Environment, Hypervisor)
-Hypervisor: VMWare WorkStation\
+Hypervisor: VMWare WorkStation (Nested virtualization)\
 VM Name: PVE\
 IP: 192.168.64.221
 
