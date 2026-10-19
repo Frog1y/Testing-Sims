@@ -16,7 +16,7 @@ NETBIOS name: HOME
 ## PC1 (Windows 10, Client)
 Hypervisor: VMWare WorkStation\
 VM Name: AD Desktop LJ\
-IP: DHCP
+IP: DHCP\
 Name: PC1\
 Domain: home.com
 
