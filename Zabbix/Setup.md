@@ -1,0 +1,97 @@
+# Zabbix Server Setup & Host Monitoring
+
+This documentation outlines the setup process for a **Zabbix 7.4** monitoring environment on Ubuntu 26.04 and provides a step-by-step procedure for configuring and monitoring new target hosts using Zabbix Agent 2.
+
+---
+
+## 1. Zabbix Server Details & Environment Setup
+
+The Zabbix Server was installed with the combined `Server-Frontend-Agent` components using MySQL as the backend database and Apache as the web server.
+
+### Server Environment
+* **OS**: Ubuntu 26.04 LTS
+* **Hostname**: `zabbix`
+* **IP Address**: `192.168.64.244`
+* **System User**: `andraz`
+
+### Database Configuration
+* **Database Name**: `zabbix`
+* **MySQL User**: `zabbix`
+* **MySQL Password**: `[*]`
+
+### Web Frontend Access
+* **URL**: `http://192.168.64.244/zabbix`
+* **Default Username**: `Admin`
+* **Password**: `[*]`
+
+> **Installation Reference**: [Zabbix 7.4 Installation Instructions (Ubuntu 26.04 + MySQL + Apache)](https://www.zabbix.com/download?zabbix=7.4&os_distribution=ubuntu&os_version=26.04&components=server_frontend_agent&db=mysql&ws=apache)
+
+---
+
+## 2. Monitoring a New Host
+
+> **Note**: While the example below demonstrates setting up a **Linux Server host using Zabbix Agent 2**, Zabbix can monitor a wide array of resources (including network switches/routers via SNMP, virtual machines, containers, databases, and web applications).
+
+### Workflow Overview
+```
++-------------------+                      +---------------------+
+|   Target Host     |  TCP 10050 (Metrics) |    Zabbix Server    |
+| (Zabbix Agent 2)  |<---------------------|   192.168.64.244    |
++-------------------+                      +---------------------+
+```
+
+---
+
+### Step-by-Step Configuration
+
+#### Step 1: Install Zabbix Agent 2
+On the target machine, download and install the Zabbix Agent package corresponding to the host operating system.
+
+* Official Download Portal: [Zabbix Downloads](https://www.zabbix.com/download?zabbix=7.4)
+
+#### Step 2: Configure the Zabbix Agent
+Edit the configuration file on the target host:
+
+```bash
+sudo nano /etc/zabbix/zabbix_agent2.conf
+```
+
+Update the key directives to point to your Zabbix server IP and define a unique hostname:
+
+```ini
+Server=192.168.64.244
+ServerActive=192.168.64.244
+Hostname=<UNIQUE_HOST_NAME>
+```
+
+> ⚠️ **Important**: The `Hostname` value defined here **must exactly match** the hostname specified later in the Zabbix Web Console.
+
+Restart and enable the agent service:
+```bash
+sudo systemctl restart zabbix-agent2
+sudo systemctl enable zabbix-agent2
+```
+
+#### Step 3: Firewall Configuration
+If firewall rules are enabled on the target machine, allow incoming TCP traffic from the Zabbix server on port `10050`:
+
+```bash
+sudo ufw allow from 192.168.64.244 to any port 10050 proto tcp
+```
+
+#### Step 4: Register the Host in the Web Console
+
+1. Open the web interface at `http://192.168.64.244/zabbix` and log in.
+2. Navigate to **Data Collection** > **Hosts**.
+3. Click **Create Host** (top right corner).
+4. Fill out the core configuration parameters:
+   * **Host name**: Enter the exact `<UNIQUE_HOST_NAME>` configured in `/etc/zabbix/zabbix_agent2.conf`.
+   * **Templates**: Select **Linux by Zabbix agent** (or the template matching your target system/device).
+   * **Host groups**: Select an appropriate group (e.g., `Linux servers`).
+   * **Interfaces**: Add an **Agent** interface and enter the IP address of the target host.
+5. Click **Add** to save.
+
+---
+
+### Verification
+After saving, check the status under **Data Collection > Hosts**. The **Availability** indicator for `ZBX` should turn green within a couple of minutes, confirming active telemetry ingestion.
