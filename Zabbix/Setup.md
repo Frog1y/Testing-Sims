@@ -73,10 +73,17 @@ sudo systemctl enable zabbix-agent2
 ```
 
 #### Step 3: Firewall Configuration
-If firewall rules are enabled on the target machine, allow incoming TCP traffic from the Zabbix server on port `10050`:
+Zabbix servers and Proxies listen to incoming connections on port `10051` (When host agents are sending data). While the agents are receiving connections and request from the servers/proxies on port `10050`.\
+When configuring firewall rules ~ Open connections from specific ip addresses to specific ports like the example below.\
 
+Agent Machine:
 ```bash
 sudo ufw allow from 192.168.64.244 to any port 10050 proto tcp
+```
+
+Server/Proxy Machine:
+```bash
+sudo ufw allow from 192.168.64.211 to any port 10051 proto tcp
 ```
 
 #### Step 4: Register the Host in the Web Console
