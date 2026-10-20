@@ -10,10 +10,10 @@ Information below outlines the infrastructure that was made for simulating a Pro
 ## PVE (Proxmox Virtual Environment, Hypervisor)
 Hypervisor: VMWare WorkStation (Nested virtualization)\
 VM Name: PVE\
-IP: 192.168.64.221
+IP: 192.168.64.221:8006
 
 ## PBS (Proxmox Backup Server)
 Hypervisor: VMWare WorkStation\
 VM Name: PBS\
-IP: 192.168.64.177
+IP: 192.168.64.177:8007
 
