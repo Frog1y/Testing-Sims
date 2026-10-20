@@ -35,7 +35,7 @@ The Zabbix Server was installed with the combined `Server-Frontend-Agent` compon
 ### Workflow Overview
 ```
 +-------------------+                      +---------------------+
-|   Target Host     |  TCP 10050 (Metrics) |    Zabbix Server    |
+|   Target Host     |                      |    Zabbix Server    |
 | (Zabbix Agent 2)  |<---------------------|   192.168.64.244    |
 +-------------------+                      +---------------------+
 ```
@@ -102,3 +102,24 @@ sudo ufw allow from 192.168.64.211 to any port 10051 proto tcp
 
 ### Verification
 After saving, check the status under **Data Collection > Hosts**. The **Availability** indicator for `ZBX` should turn green within a couple of minutes, confirming active telemetry ingestion.
+
+---
+
+## 20. 10. 2026 Update ~ Proxy server
+Installed and configured a proxy server inside the same infrastructure.\
+```
++-------------------+                      +---------------------+                      +---------------------+
+|   Target Host     |                      |    Zabbix Proxy     |                      |    Zabbix Server    |
+| (Zabbix Agent 2)  |<---------------------|   192.168.64.212    |<---------------------|   192.168.64.244    |
++-------------------+                      +---------------------+                      +---------------------+
+```
+### Notes
+Configuring a proxy server is similar to any other Zabbix installation. I used an Ubuntu OS with an SQLite database.\
+Documentation: https://www.zabbix.com/download?zabbix=7.4&os_distribution=ubuntu&os_version=26.04&components=proxy&db=sqlite3&ws=\
+Important Configs: ```/etc/zabbix/zabbix_agent2.conf```
+Set Server IP to your Zabbix server IP. Set Hostname to exactly like you set it in the web console. ⚠️ **DBName**: This is your SQLite database. Set this to a path which the zabbix user and group can access. Either create one and configure permissions or use a path where zabbix already has permissions.\
+Ensure your host and proxy/server firewall rules are updated. I had to change my original hosts firewall rules to now accept connection from the proxy instead of the zabbix server: ``` sudo ufw allow from 192.168.64.212 to any port 10050 proto tcp```.
+
+
+
+
