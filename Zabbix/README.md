@@ -11,7 +11,7 @@ Information below outlines the infrastructure that was made for simulating Zabbi
 ## Zabbix Server (Agent + Frontend + MySQL)
 Hypervisor: VMWare WorkStation\
 VM Name: Zabbix 7.4 - Ubuntu 26.04\
-IP: 192.168.64.244
+IP: 192.168.64.244\
 Web console: http://192.168.64.244/zabbix
 
 ## Ubuntu Host (Agent)
